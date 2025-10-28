@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:se7ety/core/constants/app_images.dart';
@@ -17,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Future.delayed(Duration(seconds: 3), () {
-      pushWithReplacement(context, Routes.welcome);
+      pushWithReplacement(context, Routes.onboarding);
     });
     super.initState();
   }
@@ -31,7 +32,13 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             Image.asset(AppImages.logoPng),
             Gap(10),
-            Text('ثروتك الاولى احجز الان', style: TextStyles.semiBoldStyle(color: AppColors.greenColor, fontSize: 20)),
+            Text(
+              "splash".tr(),
+              style: TextStyles.semiBoldStyle.copyWith(
+                color: AppColors.greenColor,
+                fontSize: 20,
+              ),
+            ),
           ],
         ),
       ),

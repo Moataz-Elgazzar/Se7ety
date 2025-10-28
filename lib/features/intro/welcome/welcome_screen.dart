@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:se7ety/components/buttons/main_button_custom.dart';
@@ -6,6 +7,7 @@ import 'package:se7ety/core/routes/navigator.dart';
 import 'package:se7ety/core/routes/routes.dart';
 import 'package:se7ety/core/utils/colors.dart';
 import 'package:se7ety/core/utils/text_style.dart';
+import 'package:se7ety/features/auth/models/enum_user_type.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -22,10 +24,17 @@ class WelcomeScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Spacer(flex: 2),
-                  Text('اهلا بيك', style: TextStyles.boldStyle(color: AppColors.primaryColor, fontSize: 30)),
+                  Spacer(flex: 1),
+                  Text("hello".tr(), style: TextStyles.boldStyle.copyWith(color: AppColors.primaryColor, fontSize: 30)),
                   Gap(15),
-                  Text('سجل و احجز عند دكتورك وانت فالبيت', style: TextStyles.regularStyle(fontSize: 18)),
+                  Text("booking".tr(), style: TextStyles.regularStyle.copyWith(fontSize: 18)),
+                  IconButton(
+                    onPressed: () {
+                      bool isArabic = context.locale.languageCode == 'ar';
+                      context.setLocale(Locale(isArabic ? 'en' : 'ar'));
+                    },
+                    icon: Icon(Icons.language),
+                  ),
                   Spacer(flex: 5),
                   Container(
                     width: double.infinity,
@@ -35,23 +44,23 @@ class WelcomeScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           Gap(10),
-                          Text('سجل دلوقتي كـ', style: TextStyles.semiBoldStyle(color: AppColors.wightColor, fontSize: 18)),
+                          Text("booking2".tr(), style: TextStyles.semiBoldStyle.copyWith(color: AppColors.wightColor, fontSize: 18)),
                           Gap(50),
                           MainButtonCustom(
-                            title: 'دكتور',
-                            backgroundColor: Colors.lightBlue[100],
+                            title: "doctor".tr(),
+                            backgroundColor: AppColors.inputColor.withValues(alpha: 0.8),
                             textColor: AppColors.darkColor,
                             onPressed: () {
-                              pushWithReplacement(context, Routes.login, extra: true);
+                              pushWithReplacement(context, Routes.login, extra: EnumUserType.doctor);
                             },
                           ),
                           Gap(20),
                           MainButtonCustom(
-                            title: 'مريض',
-                            backgroundColor: Colors.lightBlue[100],
+                            title: "patient".tr(),
+                            backgroundColor: AppColors.inputColor.withValues(alpha: 0.8),
                             textColor: AppColors.darkColor,
                             onPressed: () {
-                              pushWithReplacement(context, Routes.login, extra: false);
+                              pushWithReplacement(context, Routes.login, extra: EnumUserType.patient);
                             },
                           ),
                         ],

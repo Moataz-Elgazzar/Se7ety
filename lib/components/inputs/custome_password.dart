@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:se7ety/core/utils/colors.dart';
 
@@ -31,7 +32,7 @@ class _CustomePasswordState extends State<CustomePassword> {
       controller: widget.controller,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(20),
-        hintText: 'ادخل كلمة السر',
+        hintText: '***********',
         fillColor: AppColors.inputColor,
         filled: true,
         prefixIcon: Icon(Icons.lock, color: AppColors.primaryColor),
@@ -48,13 +49,7 @@ class _CustomePasswordState extends State<CustomePassword> {
             ),
             if (errorMessage != null)
               Tooltip(
-                message:
-                    "كلمة المرور يجب أن تحتوي على:\n"
-                    "- 8 أحرف على الأقل\n"
-                    "- حرف كبير واحد على الأقل (A-Z)\n"
-                    "- حرف صغير واحد على الأقل (a-z)\n"
-                    "- رقم واحد على الأقل (0-9)\n"
-                    "- رمز خاص واحد على الأقل (!@#\$&*~)",
+                message: "password_rules".tr(),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 5),
                   child: Icon(Icons.info_outline, color: Colors.red),

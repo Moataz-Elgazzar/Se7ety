@@ -1,19 +1,28 @@
 import 'package:flutter/widgets.dart';
+import 'package:se7ety/core/utils/colors.dart';
 
 class TextStyles {
-  static TextStyle boldStyle({Color? color, double fontSize = 20}) {
-    return TextStyle(color: color, fontSize: fontSize, fontWeight: FontWeight.bold);
-  }
+  static const TextStyle boldStyle = TextStyle(
+    color: AppColors.darkColor,
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  );
 
-  static TextStyle semiBoldStyle({Color? color, double fontSize = 20}) {
-    return TextStyle(color: color, fontSize: fontSize, fontWeight: FontWeight.w600);
-  }
+  static const TextStyle semiBoldStyle = TextStyle(
+    color: AppColors.darkColor,
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+  );
 
-  static TextStyle mediumStyle({Color? color, double fontSize = 20}) {
-    return TextStyle(color: color, fontSize: fontSize, fontWeight: FontWeight.w500);
-  }
+  static const TextStyle mediumStyle = TextStyle(
+    color: AppColors.darkColor,
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
+  );
 
-  static TextStyle regularStyle({Color? color, double fontSize = 20}) {
-    return TextStyle(color: color, fontSize: fontSize, fontWeight: FontWeight.w400);
-  }
+  static const TextStyle regularStyle = TextStyle(
+    color: AppColors.darkColor,
+    fontSize: 20,
+    fontWeight: FontWeight.w400,
+  );
 }

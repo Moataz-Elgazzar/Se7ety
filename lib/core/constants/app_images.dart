@@ -9,4 +9,5 @@ class AppImages {
   static const String schedualSvg = 'assets/images/scheduled.svg';
   static const String searchSvg = 'assets/images/search.svg';
   static const String welcomePng = 'assets/images/welcome.png';
+  static const String lottie = 'assets/images/loading.json';
 }

@@ -1,8 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:se7ety/core/utils/colors.dart';
 
 class CustomeTextFormField extends StatefulWidget {
-  const CustomeTextFormField({super.key, this.validator, this.controller, this.prefixIcon, this.hintText, this.suffixIcon, this.color, this.maxLines, this.fontSize, this.readOnly = false});
+  const CustomeTextFormField({super.key, this.validator, this.controller, this.prefixIcon, this.hintText, this.suffixIcon, this.color, this.maxLines, this.fontSize, this.readOnly = false, this.keyboardType, this.textAlign = TextAlign.start});
 
   final String? Function(String?)? validator;
   final TextEditingController? controller;
@@ -13,7 +14,8 @@ class CustomeTextFormField extends StatefulWidget {
   final int? maxLines;
   final double? fontSize;
   final bool readOnly;
-
+  final TextInputType? keyboardType;
+  final TextAlign textAlign;
   @override
   State<CustomeTextFormField> createState() => _CustomeTextFormFieldState();
 }
@@ -32,6 +34,8 @@ class _CustomeTextFormFieldState extends State<CustomeTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textAlign: widget.textAlign,
+      keyboardType: widget.keyboardType,
       readOnly: widget.readOnly,
       validator: validate,
       controller: widget.controller,
@@ -43,19 +47,9 @@ class _CustomeTextFormFieldState extends State<CustomeTextFormField> {
         filled: true,
         prefixIcon: widget.prefixIcon,
         contentPadding: EdgeInsets.all(20),
-        suffixIcon: (errorMessage != null && (widget.hintText == 'الاسم' || widget.hintText == 'ادخل البريد الالكتروني'))
+        suffixIcon: (errorMessage != null && (widget.hintText == "name".tr() || widget.hintText == 'example.com@'))
             ? Tooltip(
-                message: widget.hintText == 'الاسم'
-                    ? "اسم المستخدم يجب أن يلتزم بالقواعد التالية:\n"
-                          "- يُسمح فقط بالحروف والأرقام\n"
-                          "- يمكن أن يحتوي على '.' أو '' لكن ليس في البداية أو النهاية\n"
-                          "- لا يمكن أن يظهر '.' أو '' بجانب بعضهما البعض\n"
-                          "- الطول يجب أن يكون بين 8 و20 حرفًا"
-                    : "البريد الإلكتروني يجب أن يحتوي على:\n"
-                          "- اسم مستخدم صالح (حروف، أرقام، أو الرموز المسموح بها)\n"
-                          "- رمز '@'\n"
-                          "- اسم نطاق (مثل: gmail، yahoo)\n"
-                          "- امتداد صالح (مثل: .com، .org، .net)",
+                message: widget.hintText == "name".tr() ? "username_rules".tr() : "email_rules".tr(),
                 child: Icon(Icons.info_outline, color: Colors.red),
               )
             : widget.suffixIcon,

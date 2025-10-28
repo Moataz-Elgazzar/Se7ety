@@ -65,5 +65,4 @@ class DefaultFirebaseOptions {
     storageBucket: 'se7ety-e5a8d.firebasestorage.app',
     iosBundleId: 'com.malek.se7ety',
   );
-
 }

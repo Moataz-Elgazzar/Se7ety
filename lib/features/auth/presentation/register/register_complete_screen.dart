@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
@@ -23,7 +24,7 @@ class _RegisterCompleteScreenState extends State<RegisterCompleteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('اكمال عملية التسجيل', style: TextStyles.boldStyle(color: AppColors.wightColor)),
+        title: Text("registeration_complete".tr(), style: TextStyles.boldStyle.copyWith(color: AppColors.wightColor)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -49,7 +50,7 @@ class _RegisterCompleteScreenState extends State<RegisterCompleteScreen> {
                                 child: Column(
                                   children: [
                                     MainButtonCustom(
-                                      title: 'تغيير الصورة بالكاميرا',
+                                      title: "camera".tr(),
                                       onPressed: () {
                                         uploadImages(isCamera: true);
                                         if (imagePath.isNotEmpty) {}
@@ -59,7 +60,7 @@ class _RegisterCompleteScreenState extends State<RegisterCompleteScreen> {
                                     ),
                                     Gap(10),
                                     MainButtonCustom(
-                                      title: 'تغيير الصورة من المعرض',
+                                      title: "gallery".tr(),
                                       onPressed: () {
                                         uploadImages(isCamera: false);
                                         if (imagePath.isNotEmpty) {}
@@ -87,25 +88,27 @@ class _RegisterCompleteScreenState extends State<RegisterCompleteScreen> {
                     ],
                   ),
                 ),
-                Text('التخصص', style: TextStyles.semiBoldStyle(color: AppColors.darkColor, fontSize: 15)),
+                Text("specialization".tr(), style: TextStyles.semiBoldStyle.copyWith(color: AppColors.darkColor, fontSize: 15)),
                 Gap(10),
-                CustomeTextFormField(hintText: 'دكتور عظام', color: AppColors.darkColor),
+                CustomeTextFormField(keyboardType: TextInputType.text, textAlign: TextAlign.start, hintText: "orthopedic_doctor".tr(), color: AppColors.darkColor),
                 Gap(10),
-                Text('نبذه تعريفية', style: TextStyles.semiBoldStyle(color: AppColors.darkColor, fontSize: 15)),
+                Text("bio".tr(), style: TextStyles.semiBoldStyle.copyWith(color: AppColors.darkColor, fontSize: 15)),
                 Gap(10),
-                CustomeTextFormField(hintText: 'سجل المعلومات الطبيه العامه مثل تعليمك الأكاديمي\nوخبراتك السابقه...', maxLines: 7, fontSize: 12, color: AppColors.greyColor.withValues(alpha: 2.0)),
+                CustomeTextFormField(keyboardType: TextInputType.text, textAlign: TextAlign.start, hintText: "bio2".tr(), maxLines: 7, fontSize: 12, color: AppColors.greyColor.withValues(alpha: 2.0)),
                 Gap(10),
                 Divider(),
                 Gap(10),
-                Text('عنوان العيادة', style: TextStyles.semiBoldStyle(color: AppColors.darkColor, fontSize: 15)),
+                Text("address".tr(), style: TextStyles.semiBoldStyle.copyWith(color: AppColors.darkColor, fontSize: 15)),
                 Gap(10),
                 CustomeTextFormField(
-                  hintText: 'ادخل العنوان',
+                  keyboardType: TextInputType.streetAddress,
+                  textAlign: TextAlign.start,
+                  hintText: "enter_address".tr(),
                   color: AppColors.greyColor.withValues(alpha: 2.0),
                   controller: addressController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'ادخل عنوان العياده';
+                      return "enter_address".tr();
                     }
                     return null;
                   },
@@ -117,9 +120,11 @@ class _RegisterCompleteScreenState extends State<RegisterCompleteScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('ساعات العمل من', style: TextStyles.semiBoldStyle(color: AppColors.darkColor, fontSize: 15)),
+                          Text("work_hour".tr(), style: TextStyles.semiBoldStyle.copyWith(color: AppColors.darkColor, fontSize: 15)),
                           Gap(10),
                           CustomeTextFormField(
+                            keyboardType: TextInputType.datetime,
+                            textAlign: TextAlign.start,
                             hintText: '10:00 AM',
                             readOnly: true,
                             color: AppColors.greyColor.withValues(alpha: 2.0),
@@ -133,9 +138,11 @@ class _RegisterCompleteScreenState extends State<RegisterCompleteScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('الى', style: TextStyles.semiBoldStyle(color: AppColors.darkColor, fontSize: 15)),
+                          Text("to".tr(), style: TextStyles.semiBoldStyle.copyWith(color: AppColors.darkColor, fontSize: 15)),
                           Gap(10),
                           CustomeTextFormField(
+                            keyboardType: TextInputType.datetime,
+                            textAlign: TextAlign.start,
                             hintText: '10:00 PM',
                             readOnly: true,
                             color: AppColors.greyColor.withValues(alpha: 2.0),
@@ -147,23 +154,25 @@ class _RegisterCompleteScreenState extends State<RegisterCompleteScreen> {
                   ],
                 ),
                 Gap(10),
-                Text('رقم الهاتف 1', style: TextStyles.semiBoldStyle(color: AppColors.darkColor, fontSize: 15)),
+                Text("phone1".tr(), style: TextStyles.semiBoldStyle.copyWith(color: AppColors.darkColor, fontSize: 15)),
                 Gap(10),
                 CustomeTextFormField(
+                  keyboardType: TextInputType.phone,
+                  textAlign: TextAlign.start,
                   hintText: '+20xxxxxxxxxxx',
                   color: AppColors.greyColor.withValues(alpha: 2.0),
                   controller: phoneController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'ادخل رقم الهاتف';
+                      return "enter_phone".tr();
                     }
                     return null;
                   },
                 ),
                 Gap(10),
-                Text('رقم الهاتف 2 (اختياري)', style: TextStyles.semiBoldStyle(color: AppColors.darkColor, fontSize: 15)),
+                Text("phone2".tr(), style: TextStyles.semiBoldStyle.copyWith(color: AppColors.darkColor, fontSize: 15)),
                 Gap(10),
-                CustomeTextFormField(hintText: '+20xxxxxxxxxxx', color: AppColors.greyColor.withValues(alpha: 2.0)),
+                CustomeTextFormField(keyboardType: TextInputType.phone, textAlign: TextAlign.start, hintText: '+20xxxxxxxxxxx', color: AppColors.greyColor.withValues(alpha: 2.0)),
               ],
             ),
           ),
@@ -172,7 +181,7 @@ class _RegisterCompleteScreenState extends State<RegisterCompleteScreen> {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(20),
         child: MainButtonCustom(
-          title: 'التسجيل',
+          title: "registeration".tr(),
           onPressed: () {
             if (formKey.currentState!.validate()) {}
           },

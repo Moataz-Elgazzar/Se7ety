@@ -17,7 +17,10 @@ Future<void> main() async {
       path: 'assets/translations',
       fallbackLocale: Locale('en'),
       startLocale: Locale('ar'),
-      child: DevicePreview(enabled: kDebugMode, builder: (context) => const MainApp()),
+      child: DevicePreview(
+        enabled: kDebugMode,
+        builder: (context) => const MainApp(),
+      ),
     ),
   );
 }
@@ -27,6 +30,13 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(routerConfig: Routes.route, debugShowCheckedModeBanner: false, theme: AppTheme.lightTheme, localizationsDelegates: context.localizationDelegates, supportedLocales: context.supportedLocales, locale: context.locale);
+    return MaterialApp.router(
+      routerConfig: Routes.route,
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.lightTheme,
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+    );
   }
 }
