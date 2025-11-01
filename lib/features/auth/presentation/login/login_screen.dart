@@ -30,6 +30,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
+    final isArabic = context.locale.languageCode == 'ar';
     String handleUserType() {
       return widget.userType == EnumUserType.doctor ? "doctor".tr() : "patient".tr();
     }
@@ -41,7 +42,11 @@ class _LoginScreenState extends State<LoginScreen> {
           showLoadingDialog(context);
         } else if (state is SuccesAuthState) {
           pop(context);
-          pushWithReplacement(context, Routes.registerComplete);
+          if (state.role == "doctor") {
+            //pushWithReplacement(context, Routes.doctorMain);
+          } else if (state.role == "patient") {
+            pushWithReplacement(context, Routes.patientMain);
+          }
           log('login success');
         } else if (state is ErrorAuthState) {
           pop(context);
@@ -62,9 +67,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     Image.asset(AppImages.logoPng, height: 250, width: 250),
                     Text("splash".tr(), style: TextStyles.semiBoldStyle.copyWith(color: AppColors.greenColor, fontSize: 20)),
                     Gap(40),
-                    Text("login_as".tr() + " " + handleUserType(), style: TextStyles.semiBoldStyle.copyWith(color: AppColors.primaryColor, fontSize: 20)),
+                    Text(
+                      "login_as".tr() + " " + handleUserType(),
+                      style: TextStyles.semiBoldStyle.copyWith(color: AppColors.primaryColor, fontSize: isArabic ? 20 : 16),
+                    ),
                     Gap(30),
                     CustomeTextFormField(
+                      textAlign: context.locale.languageCode == 'ar' ? TextAlign.end : TextAlign.start,
                       keyboardType: TextInputType.emailAddress,
                       validator: (value) {
                         if (value == null || value.isEmpty) {

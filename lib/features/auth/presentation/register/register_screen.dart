@@ -30,6 +30,7 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
+    final isArabic = context.locale.languageCode == 'ar';
     String handleUserType() {
       return widget.userType == EnumUserType.doctor ? "doctor".tr() : "patient".tr();
     }
@@ -41,6 +42,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
           showLoadingDialog(context);
         } else if (state is SuccesAuthState) {
           pop(context);
+          if (widget.userType == EnumUserType.doctor) {
+            pushWithReplacement(context, Routes.registerComplete);
+          } else {
+            pushWithReplacement(context, Routes.login, extra: EnumUserType.patient);
+          }
+
           log('register success');
         } else if (state is ErrorAuthState) {
           pop(context);
@@ -61,7 +68,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     Image.asset(AppImages.logoPng, height: 250, width: 250),
                     Text("splash".tr(), style: TextStyles.semiBoldStyle.copyWith(color: AppColors.greenColor, fontSize: 20)),
                     Gap(20),
-                    Text("signup_as".tr() + " " + handleUserType(), style: TextStyles.semiBoldStyle.copyWith(color: AppColors.primaryColor, fontSize: 20)),
+                    Text(
+                      "signup_as".tr() + " " + handleUserType(),
+                      style: TextStyles.semiBoldStyle.copyWith(color: AppColors.primaryColor, fontSize: isArabic ? 20 : 16),
+                    ),
                     Gap(10),
                     CustomeTextFormField(
                       keyboardType: TextInputType.emailAddress,
@@ -81,6 +91,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     Gap(10),
                     CustomeTextFormField(
+                      textAlign: context.locale.languageCode == 'ar' ? TextAlign.end : TextAlign.start,
                       keyboardType: TextInputType.emailAddress,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
