@@ -9,6 +9,9 @@
   <img src="patient_login.png" width="120">
   <img src="patient_register.png" width="120">
   <img src="patienthome.png" width="120">
+  <img src="doctorprofile.png" width="120">
+  <img src="searchdoctor.png" width="120">
+  <img src="specialization.png" width="120">
 </p>
 
 
